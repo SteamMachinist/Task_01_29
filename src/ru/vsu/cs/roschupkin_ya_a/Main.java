@@ -20,12 +20,22 @@ public class Main
 
         System.out.println();
 
-        if (countArea(r1, r2, r3) >= 0)               //checking for area is positive, if not then radii are wrong
+        if (!(anyMistakes(r1, r2, r3)))
         {
             System.out.print("filled area is ");
             System.out.println(countArea(r1, r2, r3));
         }
-        else System.out.println("something is wrong");
+
+    }
+
+    public static boolean anyMistakes (double r1, double r2, double r3) //checking r3 > r2 > r1
+    {
+        if ((r1 >= r2) || (r1 >= r3) || (r2 >= r3))
+        {
+            System.out.println("something is wrong");
+            return true;
+        }
+        else return false;
     }
 
     public static double countArea(double r1, double r2, double r3)
