@@ -10,7 +10,7 @@ public class Main
         Locale.setDefault(Locale.ROOT);
 
         Scanner sc = new Scanner(System.in);
-        //entering radii of circles, where r1 is the smallest
+        //entering radii of circles where r1 is the smallest
 
         System.out.print("enter the radius of the smallest circle R = ");
         double r1 = sc.nextDouble();
