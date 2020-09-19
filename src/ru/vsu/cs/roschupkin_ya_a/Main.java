@@ -21,8 +21,6 @@ public class Main
         System.out.print("enter the radius of the biggest circle  R = ");
         double r3 = sc.nextDouble();
 
-        System.out.println();
-
         if (!(checkMistakes(r1, r2, r3)))
         {
             System.out.printf("filled area is %.3f", calcArea(r1, r2, r3));
@@ -36,14 +34,11 @@ public class Main
             System.out.println("something is wrong");
             return true;
         }
-        else return false;
+        return false;
     }
 
     public static double calcArea(double r1, double r2, double r3)
     {
-        double area; // of a filled area
-        area = r3 * r3 * (2 - Math.PI / 4) + Math.PI * 3 / 8 * (r2 * r2 - r1 * r1);
-
         /*
            area = (1/4 of square area) + (1/4 of (square area - big circle area)) +
                 + (3/8 of (medium circle area - small circle area)) =
@@ -54,6 +49,6 @@ public class Main
                 = r3 * r3 * (2 - PI / 4) + PI * 3/8 * (r2 * r2 - r1 * r1)
          */
 
-        return area;
+        return r3 * r3 * (2 - Math.PI / 4) + Math.PI * 3 / 8 * (r2 * r2 - r1 * r1);
     }
 }
