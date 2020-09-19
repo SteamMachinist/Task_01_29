@@ -21,10 +21,8 @@ public class Main
         System.out.print("enter the radius of the biggest circle  R = ");
         double r3 = sc.nextDouble();
 
-        if (!(checkMistakes(r1, r2, r3)))
-        {
-            System.out.printf("filled area is %.3f", calcArea(r1, r2, r3));
-        }
+        if (!(checkMistakes(r1, r2, r3))) System.out.printf("filled area is %.3f", calcArea(r1, r2, r3));
+
     }
 
     public static boolean checkMistakes (double r1, double r2, double r3) //checking r3 > r2 > r1 > 0
