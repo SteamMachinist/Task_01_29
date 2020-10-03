@@ -9,83 +9,56 @@ public class Main
     {
         Locale.setDefault(Locale.ROOT);
 
-        double radius1 = handleIn("smallest");
-        double radius2 = handleIn("medium");
-        double radius3 = handleIn("biggest");
+        int pictureNumber = enterPictureNumber();
 
-        handleOut(radius1, radius2, radius3);
+        double radius1 = 0;
+        if (pictureNumber >= 6)
+        {
+            radius1 = enterRadius("smallest");
+        }
+        double radius2 = enterRadius("medium");
+        double radius3 = enterRadius("biggest");
+
+        handleOut(pictureNumber, radius1, radius2, radius3);
     }
 
-    static double handleIn (String radiusName)
+    static int enterPictureNumber()
+    {
+        System.out.print("enter picture number: 2.");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+    static double enterRadius (String radiusName)
     {
         System.out.printf("enter the radius of the %s circle R = ", radiusName);
         Scanner sc = new Scanner(System.in);
-        return sc.nextDouble();
+        return sc.nextInt();
     }
 
-    static void handleOut (double radius1,double radius2, double radius3)
+    static void handleOut (int pictureNumber, double radius1, double radius2, double radius3)
     {
-        if (!hasError(radius1, radius2, radius3))
+        System.out.printf("filled area is %.3f", getAreaOfPicture(pictureNumber, radius1, radius2, radius3));
+    }
+
+    static double getAreaOfPicture(int pictureNumber, double radius1, double radius2, double radius3)
+    {
+        Picture P1 = switch (pictureNumber)
         {
-            System.out.printf("filled area is %.3f", calcArea(radius1, radius2, radius3));
-        }
+            case 1  -> new Picture(radius1, radius2, radius3, 0, 2, 6, 2);
+            case 2  -> new Picture(radius1, radius2, radius3, 0, 3, 2, 1);
+            case 3  -> new Picture(radius1, radius2, radius3, 0, 6, 1, 1);
+            case 4  -> new Picture(radius1, radius2, radius3, 0, 3, 0, 4);
+            case 5  -> new Picture(radius1, radius2, radius3, 0, 4, 3, 2);
+            case 6  -> new Picture(radius1, radius2, radius3, 0, 5, 0, 6);
+            case 7  -> new Picture(radius1, radius2, radius3, 0, 8, 0, 8);
+            case 8  -> new Picture(radius1, radius2, radius3, 0, 3, 0, 2);
+            case 9  -> new Picture(radius1, radius2, radius3, 2, 3, 4, 5);
+            case 10 -> new Picture(radius1, radius2, radius3, 2, 5, 2, 4);
+            default -> new Picture(0, 0, 0, 0, 0, 0, 0);
+        };
+
+        return P1.calculateArea();
     }
 
-
-    static boolean hasError (double radius1, double radius2, double radius3) //checking 0 < r1 < r2 < r3
-    {
-        if ((radius1 >= radius2) || (radius2 >= radius3) || (radius1 >= radius3) || (radius1 < 0))
-        {
-            System.out.println("something is wrong");
-            return true;
-        }
-        return false;
-    }
-
-    static double calcArea(double radius1, double radius2, double radius3)
-    {
-        /*
-           area = (1/4 of square area) + (1/4 of (square area - big circle area)) +
-                + (3/8 of (medium circle area - small circle area)) =
-
-                = A1 + A2 + A3
-         */
-
-        return calcA1(2 * radius3) + calcA2(radius3) + calcA3(radius1, radius2);
-    }
-
-    static double calcA1 (double squareSide) // 1/4 of square area
-    {
-        return 0.25 * calcSquareArea(squareSide);
-    }
-
-    static double calcSquareArea (double side)
-    {
-        return side * side;
-    }
-
-    static double calcA2 (double radius3) // 1/4 of (square - big circle) area
-    {
-        return 0.25 * (calcSquareArea(2 * radius3) - calcBigCircleArea(radius3));
-    }
-
-    static double calcBigCircleArea (double radius3)
-    {
-        return Math.PI * radius3 * radius3;
-    }
-
-    static double calcA3 (double radius1, double radius2) // 3/8 of (medium circle - small circle) area
-    {
-        return 0.375 * (calcMediumCircleArea(radius2) - calcSmallCircleArea(radius1));
-    }
-
-    static double calcMediumCircleArea(double radius2)
-    {
-        return Math.PI * radius2 * radius2;
-    }
-
-    static double calcSmallCircleArea (double radius1)
-    {
-        return Math.PI * radius1 * radius1;
-    }
 }
