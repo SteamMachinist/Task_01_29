@@ -9,27 +9,27 @@ public class Main
     {
         Locale.setDefault(Locale.ROOT);
 
-        int pictureNumber = enterPictureNumber();
+        int pictureNumber = readPictureNumber();
 
         double radius1 = 0;
         if (pictureNumber >= 6)
         {
-            radius1 = enterRadius("smallest");
+            radius1 = readRadius("smallest");
         }
-        double radius2 = enterRadius("medium");
-        double radius3 = enterRadius("biggest");
+        double radius2 = readRadius("medium");
+        double radius3 = readRadius("biggest");
 
         handleOut(pictureNumber, radius1, radius2, radius3);
     }
 
-    static int enterPictureNumber()
+    static int readPictureNumber()
     {
         System.out.print("enter picture number: 2.");
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
-    static double enterRadius (String radiusName)
+    static double readRadius (String radiusName)
     {
         System.out.printf("enter the radius of the %s circle R = ", radiusName);
         Scanner sc = new Scanner(System.in);
