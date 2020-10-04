@@ -29,21 +29,21 @@ public class Main
         return sc.nextInt();
     }
 
-    static double readRadius (String radiusName)
+    static double readRadius(String radiusName)
     {
         System.out.printf("enter the radius of the %s circle R = ", radiusName);
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
-    static void handleOut (int pictureNumber, double radius1, double radius2, double radius3)
+    static void handleOut(int pictureNumber, double radius1, double radius2, double radius3)
     {
         System.out.printf("filled area is %.3f", getAreaOfPicture(pictureNumber, radius1, radius2, radius3));
     }
 
     static double getAreaOfPicture(int pictureNumber, double radius1, double radius2, double radius3)
     {
-        Picture P1 = switch (pictureNumber)
+        Picture picture = switch (pictureNumber)
         {
             case 1  -> new Picture(radius1, radius2, radius3, 0, 2, 6, 2);
             case 2  -> new Picture(radius1, radius2, radius3, 0, 3, 2, 1);
@@ -58,7 +58,7 @@ public class Main
             default -> new Picture(0, 0, 0, 0, 0, 0, 0);
         };
 
-        return P1.calculateArea();
+        return picture.calculateArea();
     }
 
 }

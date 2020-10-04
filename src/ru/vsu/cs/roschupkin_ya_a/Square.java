@@ -1,15 +1,15 @@
 package ru.vsu.cs.roschupkin_ya_a;
 
-public class Square
+class Square extends Figure
 {
-    double side;
+    double side = dimension;
 
-    public Square(double side)
+    Square(double dimension)
     {
-        this.side = side;
+        super(dimension);
     }
 
-    double calculateArea()
+    double area()
     {
         return side * side;
     }

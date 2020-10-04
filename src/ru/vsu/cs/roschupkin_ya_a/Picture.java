@@ -11,10 +11,10 @@ public class Picture
     double partOfArea3;
     double partOfArea4;
 
-    SmallCircle  SC1;
-    MediumCircle MC1;
-    BigCircle    BC1;
-    Square        S1;
+    Circle smallCircle;
+    Circle mediumCircle;
+    Circle bigCircle;
+    Square square;
 
     public Picture(double radius1, double radius2, double radius3, double partOfArea1,
                    double partOfArea2, double partOfArea3, double partOfArea4)
@@ -28,34 +28,22 @@ public class Picture
         this.partOfArea3 = partOfArea3;
         this.partOfArea4 = partOfArea4;
 
-        this.SC1 = new SmallCircle(radius1);
-        this.MC1 = new MediumCircle(radius2);
-        this.BC1 = new BigCircle(radius3);
-        this.S1  = new Square(2 * radius3);
+        this.smallCircle  = new Circle(radius1);
+        this.mediumCircle = new Circle(radius2);
+        this.bigCircle    = new Circle(radius3);
+        this.square       = new Square(2 * radius3);
     }
 
     double calculateArea()
     {
-        return calculateArea1() + calculateArea2() + calculateArea3() + calculateArea4();
+        return calculatePartArea(partOfArea1, smallCircle.area(), 0)
+                + calculatePartArea(partOfArea2, mediumCircle.area(), smallCircle.area())
+                + calculatePartArea(partOfArea3, bigCircle.area(), mediumCircle.area())
+                + calculatePartArea(partOfArea4, square.area(), bigCircle.area());
     }
 
-    double calculateArea1()
+    double calculatePartArea(double partOfArea, double biggerFigureArea, double smallerFigureArea)
     {
-        return partOfArea1 / 8 * SC1.calculateArea();
-    }
-
-    double calculateArea2()
-    {
-        return partOfArea2 / 8 * (MC1.calculateArea() - SC1.calculateArea());
-    }
-
-    double calculateArea3()
-    {
-        return partOfArea3 / 8 * (BC1.calculateArea() - MC1.calculateArea());
-    }
-
-    double calculateArea4()
-    {
-        return partOfArea4 / 8 * (S1.calculateArea() - BC1.calculateArea());
+        return partOfArea / 8 * (biggerFigureArea - smallerFigureArea);
     }
 }
