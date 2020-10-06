@@ -19,7 +19,8 @@ public class Main
         double radius2 = readRadius("medium");
         double radius3 = readRadius("biggest");
 
-        handleOut(pictureNumber, radius1, radius2, radius3);
+        double paintedArea = getAreaOfPicture(pictureNumber, radius1, radius2, radius3);
+        handleOut(paintedArea);
     }
 
     static int readPictureNumber()
@@ -36,9 +37,9 @@ public class Main
         return sc.nextInt();
     }
 
-    static void handleOut(int pictureNumber, double radius1, double radius2, double radius3)
+    static void handleOut(double area)
     {
-        System.out.printf("filled area is %.3f", getAreaOfPicture(pictureNumber, radius1, radius2, radius3));
+        System.out.printf("filled area is %.3f", area);
     }
 
     static double getAreaOfPicture(int pictureNumber, double radius1, double radius2, double radius3)
